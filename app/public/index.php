@@ -2,7 +2,7 @@
 
 session_start();
 
-require "../core/init.php";
+require "../public/index.php";
 
 $app = new App;
 $app-> loadController();

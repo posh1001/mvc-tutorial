@@ -14,7 +14,7 @@ class App
 
     public function loadController()
     {
-        $URL = $this-> splitURL(); // e.g. ['blog', 'post', '123']
+        $URL = $this->splitURL(); // e.g. ['blog', 'post', '123']
 
         // Capitalize the controller name (first part of URL)
         $controllerName = ucfirst($URL[0]);
@@ -30,8 +30,8 @@ class App
             $this->controller = "_404";
         }
 
-        
-$controller = new  $this->controller;
-call_user_func_array([$controller, $this->method], [""]);
+
+        $controller = new  $this->controller;
+        call_user_func_array([$controller, $this->method], [""]);
     }
 }
