@@ -20,13 +20,15 @@ class App
         $controllerName = ucfirst($URL[0]);
 
         // Build the controller file path
-        $filename = "../controllers/" . $controllerName . ".php";
+        $filename = "../app/controllers/" . $controllerName . ".php";
         // Load appropriate controller
         if (file_exists($filename)) {
             require $filename;
             $this->controller = $controllerName;
         } else {
-            require "../controllers/_404.php";
+            $filename = "../app/controllers/_404.php";
+
+            require $filename;
             $this->controller = "_404";
         }
 
