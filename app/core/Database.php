@@ -1,6 +1,6 @@
 <?php
 
-class Database
+trait Database
 {
     private function dbConnect()
     {
@@ -16,17 +16,26 @@ class Database
 
     public function query($query, $data = [])
     {
-        $con = $this->dbConnect();
-        $stm = $con->prepare($query);
-
-        $check = $stm->execute($data);
-        if ($check) {
+        try {
+            $con = $this->dbConnect();
+            $stm = $con->prepare($query);
+            $stm->execute($data);
             $result = $stm->fetchAll(PDO::FETCH_OBJ);
-            if (is_array($result) && count($result)) {
-                return $result;
-            }
+            return (!empty($result)) ? $result : false;
+        } catch (PDOException $e) {
+            // Log or display a meaningful message in dev mode
+            die("Query Error: " . $e->getMessage());
         }
+    }
 
-        return false;
+    public function execute($query, $data = [])
+    {
+        try {
+            $con = $this->dbConnect();
+            $stm = $con->prepare($query);
+            return $stm->execute($data);
+        } catch (PDOException $e) {
+            die("Execution Error: " . $e->getMessage());
+        }
     }
 }
