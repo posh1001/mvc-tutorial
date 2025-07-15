@@ -2,7 +2,6 @@
 
 class Home
 {
-
   use controller;
 
   public function index()

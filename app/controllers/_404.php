@@ -1,8 +1,12 @@
 <?php
 
-class _404 extends Controller {
+class _404
+{
 
-    public function index() {
+    use controller;
+
+    public function index()
+    {
         echo "404 - Page Not Found";
     }
 }

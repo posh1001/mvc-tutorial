@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
 
     use Model;
 
@@ -11,4 +12,17 @@ class User {
         'name',
         'age',
     ];
+
+    public function validate($data)
+    {
+
+        $this->errors = [];
+
+        if (empty($this->errors)) {
+
+            return true;
+        }
+
+        return false;
+    }
 }
